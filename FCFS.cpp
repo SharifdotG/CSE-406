@@ -30,6 +30,9 @@ int main() {
     for (int i = 0; i < num_pids; i++) {
         cout << pids[i] << "\t" << arrival_time[i] << "\t" << burst_time[i] << "\t" << completion_time[i] << "\t" << turn_around_time[i] << "\t" << waiting_time[i] << endl;
     }
+    cout << endl;
+
+    cout << "Average Waiting Time: " << (accumulate(waiting_time.begin(), waiting_time.end(), 0) / 4.0) << endl;
 
     return 0;
 }
