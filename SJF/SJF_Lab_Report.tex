@@ -1,12 +1,6 @@
 \documentclass[12pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
-\usepackage\section{Output Screenshot}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{Screenshot 2025-07-23 130728.png}
-    \caption{SJF Algorithm Execution Output}
-    \label{fig:sjf_output}
-\end{figure}=1in]{geometry}
+\usepackage[margin=1in]{geometry}
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{amsmath}
@@ -28,28 +22,30 @@
 
 \begin{document}
 
+% Front Page
 \begin{titlepage}
   \centering
-
   \vspace*{3cm}
 
-  {\HUGE\bfseries Lab Report}
+  {\Huge\bfseries CSE 406 – Lab Report 2: Shortest Job First (SJF) Non-Preemptive Scheduling Algorithm \par}
+  \vspace{2.5cm}
 
-  \vspace{1cm}
-
-  {\Large\bfseries Shortest Job First (SJF) Non-Preemptive Scheduling Algorithm}
-
-  \vspace{2cm}
-
-  \begin{minipage}{0.6\textwidth}
-    \centering
+  \noindent
+  \begin{minipage}[t]{0.48\textwidth}
+    {\large\bfseries Submitted By:}\\[0.5em]
     \Large
-    \textbf{Submitted by:} \\[0.5em]
-    Student Name \\
-    Student ID \\[1em]
-    \textbf{Submitted to:} \\[0.5em]
-    Course Instructor \\[1em]
-    \textbf{Course:} CSE-406 \\[0.5em]
+    Sharif Md. Yousuf \\
+    ID: 22101128 \\
+    Section: C-2 \\
+    4th Year, 1st Semester \\
+    Spring 2025
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.48\textwidth}
+    {\large\bfseries Submitted To:}\\[0.5em]
+    \Large
+    Atia Rahman Orthi \\
+    Lecturer \\
     Department of Computer Science \& Engineering \\
     University of Asia Pacific
   \end{minipage}
@@ -63,7 +59,7 @@
 \end{titlepage}
 
 \section{Problem Statement}
-A program is required to implement the Shortest Job First (SJF) non-preemptive CPU scheduling algorithm. This algorithm selects the process with the smallest burst time among all available processes for execution. The implementation must handle processes with different arrival times, ensure that only arrived processes are considered for scheduling, and calculate essential performance metrics including completion time, turnaround time, and waiting time.
+An application is to be developed to perform the Shortest Job First-non-preemptive (SJF-NP) CPU scheduling. The name is a descriptive one in that it chooses a process, which has the smallest burst time amongst all processes that may be ready at a time, for execution. Processes may have diverse arrival times and can be scheduled only if they have arrived. Completion time, turnaround time, and waiting time are the minimum set of performance measures the code must give.
 
 \section{Objective}
 In this lab we:
@@ -86,7 +82,7 @@ In this lab we:
 \section{Output Screenshot}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{sjf_output.png}
+    \includegraphics[width=0.8\textwidth]{Screenshot 2025-07-23 134801.png}
     \caption{SJF Algorithm Execution Output}
     \label{fig:sjf_output}
 \end{figure}
