@@ -1,98 +1,78 @@
-
 #include <bits/stdc++.h>
 using namespace std;
 
-struct P {
+struct Process {
     string pid;
-    int at, bt, pr;
-    int ct, tat, wt;
-    bool done;
+    int at = 0;
+    int bt = 0;
+    int pr = 0;
+    int ct = 0;
+    int tat = 0;
+    int wt = 0;
+    bool done = false;
 };
 
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-
     int n;
-    cin >> n;
-
-    vector<P> ps(n);
-    for (int i = 0; i < n; i++) {
-        cin >> ps[i].pid >> ps[i].at >> ps[i].bt >> ps[i].pr;
-        ps[i].ct = ps[i].tat = ps[i].wt = 0;
-        ps[i].done = false;
+    if (!(cin >> n) || n < 0) {
+        return 0;
     }
 
-    sort(ps.begin(), ps.end(), [](const P &a, const P &b) {
-        if (a.at != b.at) {
-            return a.at < b.at;
-        }
+    vector<Process> ps(n);
+    for (int i = 0; i < n; i++) {
+        cin >> ps[i].pid >> ps[i].at >> ps[i].bt >> ps[i].pr;
+    }
 
-        if (a.pr != b.pr) {
-            return a.pr < b.pr;
-        }
-
+    sort(ps.begin(), ps.end(), [](const Process &a, const Process &b) {
+        if (a.at != b.at) return a.at < b.at;
+        if (a.pr != b.pr) return a.pr < b.pr;
         return a.pid < b.pid;
     });
 
-    int finished = 0;
-    long long cur = 0;
-    if (!ps.empty()) {
-        cur = ps[0].at;
-    }
+    long long time_now = 0;
+    if (!ps.empty()) time_now = ps.front().at;
 
-    double tot_tat = 0.0, tot_wt = 0.0;
+    int completed = 0;
+    double total_tat = 0.0, total_wt = 0.0;
 
-    while (finished < n) {
+    while (completed < n) {
         int pick = -1;
+
         for (int i = 0; i < n; i++) {
-            if (!ps[i].done && ps[i].at <= cur) {
-                if (pick == -1) {
-                    pick = i;
-                } else if (ps[i].pr < ps[pick].pr) {
-                    pick = i;
-                } else if (ps[i].pr == ps[pick].pr && ps[i].at < ps[pick].at) {
-                    pick = i;
-                }
+            if (!ps[i].done && ps[i].at <= time_now) {
+                if (pick == -1) pick = i;
+                else if (ps[i].pr < ps[pick].pr) pick = i;
+                else if (ps[i].pr == ps[pick].pr && ps[i].at < ps[pick].at) pick = i;
             }
         }
 
         if (pick == -1) {
-            int nextIdx = -1;
-            for (int i = 0; i < n; i++) {
-                if (!ps[i].done) {
-                    nextIdx = i;
-                    break;
-                }
-
-                if (nextIdx == -1) {
-                    break;
-                }
-
-                cur = max<long long>(cur, ps[nextIdx].at);
-                continue;
-            }
-
-            cur += ps[pick].bt;
-            ps[pick].ct = (int)cur;
-            ps[pick].tat = ps[pick].ct - ps[pick].at;
-            ps[pick].wt = ps[pick].tat - ps[pick].bt;
-            ps[pick].done = true;
-            finished++;
-
-            tot_tat += ps[pick].tat;
-            tot_wt += ps[pick].wt;
+            int next_at = INT_MAX;
+            for (auto &p : ps) if (!p.done) next_at = min(next_at, p.at);
+            time_now = max<long long>(time_now, next_at);
+            continue;
         }
 
-        cout << "\nPID\tAT\tBT\tPR\tCT\tTAT\tWT\n";
-        for (const auto &p : ps) {
-            cout << p.pid << '\t' << p.at << '\t' << p.bt << '\t' << p.pr
-                 << '\t' << p.ct << '\t' << p.tat << '\t' << p.wt << '\n';
-        }
+        time_now += ps[pick].bt;
+        ps[pick].ct = (int)time_now;
+        ps[pick].tat = ps[pick].ct - ps[pick].at;
+        ps[pick].wt = ps[pick].tat - ps[pick].bt;
+        ps[pick].done = true;
+        completed++;
 
-        cout << fixed << setprecision(2) << "\n";
-        cout << "Average Turn Around Time: " << (n ? tot_tat / n : 0.0) << "\n";
-        cout << "Average Waiting Time: " << (n ? tot_wt / n : 0.0) << "\n";
-
-        return 0;
+        total_tat += ps[pick].tat;
+        total_wt += ps[pick].wt;
     }
+
+    cout << "PID\tAT\tBT\tPR\tCT\tTAT\tWT\n";
+    for (const auto &p : ps) {
+        cout << p.pid << '\t' << p.at << '\t' << p.bt << '\t' << p.pr
+             << '\t' << p.ct << '\t' << p.tat << '\t' << p.wt << '\n';
+    }
+
+    cout << fixed << setprecision(2);
+    cout << "\nAverage Turn Around Time: " << (n ? total_tat / n : 0.0) << "\n";
+    cout << "Average Waiting Time: " << (n ? total_wt / n : 0.0) << "\n";
+
+    return 0;
+}
