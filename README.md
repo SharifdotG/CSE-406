@@ -1,10 +1,10 @@
 # CSE-406: Operating Systems Lab
 
-> **University of Asia Pacific** | Department of Computer Science & Engineering
-> **Course**: CSE 406 - Operating Systems Lab
-> **Student**: Sharif Md. Yousuf (ID: 22101128) | Section: C-2
-> **Semester**: 4th Year, 1st Semester | Spring 2025
-> **Instructor**: Atia Rahman Orthi (Lecturer)
+- **University of Asia Pacific** | Department of Computer Science & Engineering
+- **Course**: CSE 406 - Operating Systems Lab
+- **Student**: Sharif Md. Yousuf (ID: 22101128) | Section: C-2
+- **Semester**: 4th Year, 1st Semester | Spring 2025
+- **Instructor**: Atia Rahman Orthi (Lecturer)
 
 This repository contains comprehensive implementations of CPU scheduling algorithms, disk scheduling algorithms, and page replacement algorithms, along with detailed LaTeX lab reports documenting theory, implementation, and analysis.
 
