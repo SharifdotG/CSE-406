@@ -154,6 +154,21 @@ This repository contains comprehensive implementations of CPU scheduling algorit
   - Demonstrates Belady's Anomaly
   - **Test Case**: 3 frames, 15 page references
 
+### 10. LRU (Least Recently Used)
+
+**Directory**: `LRU Page Replacement/`
+
+- **Implementation**: `LRU_Page_Replacement.cpp`
+- **Report**: `LRU_Page_Replacement_Lab_Report.tex` (Lab Report 10)
+- **Features**:
+  - Uses a stack to track page usage
+  - Replaces the least recently used page
+  - More efficient than FIFO in most scenarios
+  - Calculates hit ratio and fault ratio
+  - Visualizes frame status at each step
+  - **Test Case**: 4 frames, 11 page references
+  - **Result**: Hit ratio = 45.45%, Fault ratio = 54.55%, Total page faults = 6, Total page hits = 5
+
 ---
 
 ## 🎓 Lab Exam Solutions

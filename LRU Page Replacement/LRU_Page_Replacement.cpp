@@ -11,14 +11,11 @@ int main() {
 		cin >> pages[i];
 	}
 
-	vector<int> frames(frame_size, -1);
-	vector<int> lastUsed(frame_size, -1);
-	int pageFaults = 0;
-	int pageHits = 0;
+	vector<int> frames(frame_size, -1), lastUsed(frame_size, -1);
+	int pageFaults = 0, pageHits = 0;
 
 	cout << "\nPage Reference | Frames Status | Hit/Miss\n";
 	cout << "--------------------------------------------\n";
-
 	for (int i = 0; i < num_pages; i++) {
 		int currentPage = pages[i];
 		bool found = false;
